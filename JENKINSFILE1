@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+    stages {
+        stage('Parallel Execution') {
+            parallel {
+                stage('Test Suite 1') {
+                    steps {
+                        sh 'mvn clean test -Dtest=Suite'
+                    }
+                }
+                stage('Test Suite 2') {
+                    steps {
+                        sh 'mvn clean test -Dtest=Suite1'
+                    }
+                }                
+            }
+        }
+    }
+}
